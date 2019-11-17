@@ -68,14 +68,22 @@ registerBlockType( 'mrjb/terminal-display', {
 			source: 'attribute',
 			selector: 'a',
 		},
-		terminalData: {
-			source: 'html',
-			selector: 'p',
+		user: {
+			type: 'string',
+			default: 'user'
+		},
+		hostname: {
+			type: 'string',
+			default: 'parrot'
 		},
 		showPluginLink: {
 			type: 'Boolean',
 			default: 1
-		}
+		},
+		terminalData: {
+			source: 'html',
+			selector: 'p',
+		},
 	},
 
 	/**
@@ -95,12 +103,12 @@ registerBlockType( 'mrjb/terminal-display', {
 		 * Update content on change.
 		 */
 
-		function onChangeTerminalType (value) {
-			props.setAttributes( { terminalType: value } );
-		}
-
 		function onChangeCommand (value) {
 			props.setAttributes( { command: value } );
+		}
+
+		function onChangeHostname (value) {
+			props.setAttributes( { hostname: value } );
 		}
 
 		function onChangeShowPluginLink (value) {
@@ -109,6 +117,14 @@ registerBlockType( 'mrjb/terminal-display', {
 
 		function onChangeTerminalData (value) {
 			props.setAttributes( { terminalData: value } );
+		}		
+
+		function onChangeTerminalType (value) {
+			props.setAttributes( { terminalType: value } );
+		}
+
+		function onChangeUser (value) {
+			props.setAttributes( { user: value } );
 		}
 
 		return (
@@ -125,10 +141,16 @@ registerBlockType( 'mrjb/terminal-display', {
 									]
 								}
 							/>
-						</PanelRow>
+						</PanelRow>	
+						<PanelRow>
+							<TextControl format="string" label="User" value={ props.attributes.user } onChange={ onChangeUser }></TextControl>
+						</PanelRow>		
+						<PanelRow>
+							<TextControl format="string" label="Hostname" value={ props.attributes.hostname } onChange={ onChangeHostname }></TextControl>
+						</PanelRow>		
 						<PanelRow>
 							<TextControl format="string" label="Command" value={ props.attributes.command } onChange={ onChangeCommand }></TextControl>
-						</PanelRow>		
+						</PanelRow>
 						<PanelRow>
 							<ToggleControl label="Show Plugin Link" checked={ props.attributes.showPluginLink } onChange={ onChangeShowPluginLink } help={ props.attributes.showPluginLink ? 'Showing link to Terminal Display plugin.' : 'Not showing plugin link' } />
 						</PanelRow>				
@@ -136,7 +158,7 @@ registerBlockType( 'mrjb/terminal-display', {
 				</InspectorControls>				
 				<div className="terminal">
 					<div className="command">
-						<span className="red">┌─[✗</span>]─[<span className="user">user</span><span className="at">@</span><span className="hostname">parrot</span><span className="red">]─[</span><span className="tilde">~</span><span className="red">]</span><br/>
+						<span className="red">┌─[✗</span>]─[<span className="user">{ props.attributes.user }</span><span className="at">@</span><span className="hostname">{ props.attributes.hostname }</span><span className="red">]─[</span><span className="tilde">~</span><span className="red">]</span><br/>
 						<span className="red">└──╼</span> <span className="at">$</span> <a href="javascript:none" title="Click to copy">{ props.attributes.command }</a>
 					</div>
 					<RichText
