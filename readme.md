@@ -1,3 +1,22 @@
+# Gutenberg Terminal Display
+Open source project for displaying terminal output from different sources.
+
+## Terminal Sources
+- [Parrot Security OS](https://parrotlinux.org/).
+
+## Pull Requests Welcome!
+Please help out and support this project.
+
+### To Do List
+- Editable.
+- Set user, hostname and command.
+- Select Terminal
+- Allow Color picking or something to designate styles per terminal.
+- Autoformating
+
+
+#### This is awesome stuff below...
+
 This project was bootstrapped with [Create Guten Block](https://github.com/ahmadawais/create-guten-block).
 
 Below you will find some information on how to run scripts.
