@@ -130,7 +130,7 @@ registerBlockType( 'mrjb/terminal-display', {
 							<TextControl format="string" label="Command" value={ props.attributes.command } onChange={ onChangeCommand }></TextControl>
 						</PanelRow>		
 						<PanelRow>
-							<ToggleControl label="Show Plugin Link" checked={ props.attributes.showPluginLink } onChange={ onChangeShowPluginLink } />
+							<ToggleControl label="Show Plugin Link" checked={ props.attributes.showPluginLink } onChange={ onChangeShowPluginLink } help={ props.attributes.showPluginLink ? 'Showing link to Terminal Display plugin.' : 'Not showing plugin link' } />
 						</PanelRow>				
 					</PanelBody>
 				</InspectorControls>				
