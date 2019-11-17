@@ -78,7 +78,7 @@ registerBlockType( 'mrjb/terminal-display', {
 		},
 		showPluginLink: {
 			type: 'Boolean',
-			default: 1
+			default: true
 		},
 		terminalData: {
 			source: 'html',
@@ -201,11 +201,11 @@ registerBlockType( 'mrjb/terminal-display', {
 		var content = props.attributes.terminalData;
 		var showPlugin = props.attributes.showPluginLink;
 
-		var htmlShowPlugin = "";
-		if (showPlugin === 1) {
-			htmlShowPlugin = '<div className="info-tag" ><a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank" rel="noopener noreferrer">(Gutenberg Terminal Display)</a></div>';
+		var htmlPluginLink = { __html: '' };
+		if (showPlugin === true) {
+			htmlPluginLink = { __html: '<a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank" rel="noopener noreferrer">(Gutenberg Terminal Display)</a>'};
 		}
-
+		
 		return (		
 			<div>
 				<div className="terminal">
@@ -217,7 +217,7 @@ registerBlockType( 'mrjb/terminal-display', {
 						{ content }
 					</p>
 				</div>
-				{htmlShowPlugin}				
+				<div className="info-tag" dangerouslySetInnerHTML={ htmlPluginLink }></div>
 			</div>		
 		);
 	},
