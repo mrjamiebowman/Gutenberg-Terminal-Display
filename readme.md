@@ -2,7 +2,7 @@
 Open source project for displaying terminal output from different sources.
 
 ## Terminal Sources
-- [Parrot Security OS](https://parrotlinux.org/).
+- [Parrot Security OS](https://parrotlinux.org/)
 
 ## Pull Requests Welcome!
 Please help out and support this project.
@@ -10,6 +10,7 @@ Please help out and support this project.
 ### To Do List
 - Editable.
 - Set user, hostname and command.
+- Click command and copies to clip board.
 - Select Terminal
 - Allow Color picking or something to designate styles per terminal.
 - Autoformating
