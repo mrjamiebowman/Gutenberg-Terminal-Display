@@ -15,6 +15,7 @@ Please help out and support this project.
 - Allow Color picking or something to designate styles per terminal.
 - Autoformating
 - Box Styling (currently has subtle shadow)
+- Spinner for loading data.
 
 ## Create Guten Block (Boilerplate)
 
