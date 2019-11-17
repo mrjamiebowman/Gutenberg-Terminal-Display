@@ -127,6 +127,10 @@ registerBlockType( 'mrjb/terminal-display', {
 			props.setAttributes( { user: value } );
 		}
 
+		const onClickCopyCommand = value => {
+			debugger;
+		};
+
 		return (
 			<div className={ props.className }>
 				<InspectorControls>
@@ -171,7 +175,7 @@ registerBlockType( 'mrjb/terminal-display', {
 						tagName="p"
 					/>
 				</div>
-				<div className="info-tag"><a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank">(Gutenberg Terminal Display)</a></div>
+				<div className="info-tag" isActive={ props.attributes.showPluginLink }><a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank">(Gutenberg Terminal Display)</a></div>
 			</div>
 		);
 	},
@@ -187,21 +191,18 @@ registerBlockType( 'mrjb/terminal-display', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
-	save: ( props ) => {
+	save: ( props, onClickCopyCommand ) => {
 
 		var command = props.attributes.command;
 		var content = props.attributes.terminalData;
-
-		function onClickCopyCommand (value) {
-			debugger;
-		}
+		var showPlugin = props.attributes.showPluginLink;
 
 		return (		
 			<div>
 				<div className="terminal">
 					<div className="command">
 						<span className="red">┌─[✗</span>]─[<span className="user">{ props.attributes.user }</span><span className="at">@</span><span className="hostname">{ props.attributes.hostname }</span><span className="red">]─[</span><span className="tilde">~</span><span className="red">]</span><br/>
-						<span className="red">└──╼</span> <span className="at">$</span> <Button href="javascript:none" title="Click to copy to clipboard" isLink={ true } onClick={ onClickCopyCommand }>{ command }</Button>					
+						<span className="red">└──╼</span> <span className="at">$</span> <a id="mrjb-btn-command" href="javascript:none" title="Click to copy to clipboard" onClick="mrjb_terminal_display_copy_to_clipboard(this)">{ command }</a>
 					</div>
 					<p>
 						{ content }

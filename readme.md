@@ -10,7 +10,6 @@ Please help out and support this project.
 ### To Do List
 - Editable.
 - Set user, hostname and command.
-- Click command and copies to clip board.
 - Select Terminal
 - Allow Color picking or something to designate styles per terminal.
 - Autoformating
