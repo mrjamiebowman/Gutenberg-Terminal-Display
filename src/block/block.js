@@ -25,7 +25,9 @@ const {
 	PanelBody,
 	PanelRow,
 	FormToggle,
+	SelectControl,
 	Spinner,
+	ToggleControl,
 	TextControl
 } = wp.components;
 const { withSelect } = wp.data;
@@ -58,7 +60,7 @@ registerBlockType( 'mrjb/terminal-display', {
 	attributes: {
 		terminalType: {
 			type: 'string',
-			default: 'Parrot Security OS'
+			default: 'parrotos'
 		},
 		command: {
 			type: 'string',
@@ -104,9 +106,17 @@ registerBlockType( 'mrjb/terminal-display', {
 		return (
 			<div className={ props.className }>
 				<InspectorControls>
-					<PanelBody title="Terminal Settings" initialOpen="true">
+					<PanelBody title={ __("Terminal Settings") } initialOpen={ true }>
 						<PanelRow>
-							<TextControl format="string" label="Terminal" value={ props.attributes.terminalType } onChange={ onChangeTerminalType }></TextControl>
+							<SelectControl label="Terminal" value={ props.attributes.terminalType } onChange={ onChangeTerminalType }
+								options={
+									[
+										{ label: 'Command Prompt', value: 'cmd'},
+										{ label: 'Parrot Security OS', value: 'parrotos'},
+										{ label: 'PowerShell', value: 'ps'}
+									]
+								}
+							/>
 						</PanelRow>
 						<PanelRow>
 							<TextControl format="string" label="Command" value={ props.attributes.command } onChange={ onChangeCommand }></TextControl>
