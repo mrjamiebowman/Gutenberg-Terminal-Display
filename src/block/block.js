@@ -200,8 +200,8 @@ registerBlockType( 'mrjb/terminal-display', {
 			<div>
 				<div className="terminal">
 					<div className="command">
-						<span className="red">┌─[✗</span>]─[<span className="user">user</span><span className="at">@</span><span className="hostname">parrot</span><span className="red">]─[</span><span className="tilde">~</span><span className="red">]</span><br/>
-						<span className="red">└──╼</span> <span className="at">$</span> <Button href="javascript:none" title="Click to copy to clipboard" isLink={ true } onClick={ onClickCopyCommand }>{ command }</Button>
+						<span className="red">┌─[✗</span>]─[<span className="user">{ props.attributes.user }</span><span className="at">@</span><span className="hostname">{ props.attributes.hostname }</span><span className="red">]─[</span><span className="tilde">~</span><span className="red">]</span><br/>
+						<span className="red">└──╼</span> <span className="at">$</span> <Button href="javascript:none" title="Click to copy to clipboard" isLink={ true } onClick={ onClickCopyCommand }>{ command }</Button>					
 					</div>
 					<p>
 						{ content }
