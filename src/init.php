@@ -90,9 +90,23 @@ function mrjb_terminal_display_block_assets() { // phpcs:ignore
 add_action( 'init', 'mrjb_terminal_display_block_assets' );
 
 
-// parrot os like font "Monospace Regular"
-function mrjb_terminal_display_add_google_fonts() {
+// editor scripts/css
+function mrjb_terminal_display_block_resources_editor() {
+	
+}
+add_action( 'enqueue_block_editor_assets', 'mrjb_terminal_display_block_resources_editor' );
+
+// frontend scripts/css
+function mrjb_terminal_display_block_resources_fontend() {
+	wp_enqueue_script(
+        'terminal-display-block-js',
+        plugins_url( '/block/scripts.js', __FILE__ ),
+        [ 'wp-blocks', 'wp-element', 'wp-components', 'wp-i18n' ],
+        filemtime( plugin_dir_path( __FILE__ ) . 'block/scripts.js' )	
+    );
+
+	// parrot os like font "Monospace Regular"
 	wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap', false ); 
 }
 	 
-add_action( 'wp_enqueue_scripts', 'mrjb_terminal_display_add_google_fonts' );
+add_action( 'enqueue_block_assets', 'mrjb_terminal_display_block_resources_fontend' );
