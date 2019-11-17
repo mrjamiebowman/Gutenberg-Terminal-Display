@@ -14,7 +14,7 @@ Please help out and support this project.
 - Select Terminal
 - Allow Color picking or something to designate styles per terminal.
 - Autoformating
-
+- Box Styling (currently has subtle shadow)
 
 ## Create Guten Block (Boilerplate)
 
