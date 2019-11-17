@@ -25,15 +25,16 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType( 'cgb/block-hacking-console-results', {
+registerBlockType( 'mrjb/terminal-display', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'ParrotOS Console Output' ), // Block title.
+	title: __( 'Terminal Display' ), // Block title.
 	icon: 'media-code', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
-	keywords: [		
-		__( 'Hacking Consoles' ),
-		__( 'Parrot OS Console' ),
-		__( 'ParrotOS Console' ),
+	keywords: [				
+		__( 'Terminal Display' ),
+		__( 'Hacking Terminal' ),
+		__( 'Parrot OS Terminal' ),
+		__( 'ParrotOS Terminal' ),
 	],
 
 	/**
@@ -57,22 +58,20 @@ registerBlockType( 'cgb/block-hacking-console-results', {
 			props.setAttributes( { content: newContent } );
 		}
 
-		// Creates a <p class='wp-block-cgb-block-hacking-console-results'></p>.
+		// Creates a <p class='wp-block-mrjb-terminal-display'></p>.
 		return (
 			<div className={ props.className }>
+				<span className="red">┌─[✗</span>]─[<span className="user">user</span><span className="at">@</span><span className="hostname">parrot</span><span className="red">]─[</span><span className="tilde">~</span><span class="red">]</span><br/>
+				<span className="red">└──╼</span> <span className="at">$</span> sudo namp -sU 192.168.0.34
 				<p>
-					<span className="red">┌─[✗</span>]─[<span className="user">user</span><span className="at">@</span><span className="hostname">parrot</span><span className="red">]─[</span><span className="tilde">~</span><span class="red">]</span>
-					<span className="red">└──╼</span> <span className="at">$</span> sudo namp -sU 192.168.0.34
-				</p>
-				<p>
-					20/tcp   closed ftp-data
-					21/tcp   open   ftp         vsftpd 2.0.8 or later
-					22/tcp   open   ssh         OpenSSH 7.2p2 Ubuntu 4 (Ubuntu Linux; protocol 2.0)
-					53/tcp   open   domain      dnsmasq 2.75
-					80/tcp   open   http        PHP cli server 5.5 or later
-					139/tcp  open   netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
-					666/tcp  open   doom?
-					3306/tcp open   mysql       MySQL 5.7.12-0ubuntu1
+					20/tcp   closed ftp-data<br/>
+					21/tcp   open   ftp         vsftpd 2.0.8 or later<br/>
+					22/tcp   open   ssh         OpenSSH 7.2p2 Ubuntu 4 (Ubuntu Linux; protocol 2.0)<br/>
+					53/tcp   open   domain      dnsmasq 2.75<br/>
+					80/tcp   open   http        PHP cli server 5.5 or later<br/>
+					139/tcp  open   netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)<br/>
+					666/tcp  open   doom?<br/>
+					3306/tcp open   mysql       MySQL 5.7.12-0ubuntu1<br/>
 				</p>
 			</div>
 		);
@@ -92,19 +91,17 @@ registerBlockType( 'cgb/block-hacking-console-results', {
 	save: ( props ) => {
 		return (
 			<div className={ props.className }>
+				<span className="red">┌─[✗</span>]─[<span className="user">user</span><span className="at">@</span><span className="hostname">parrot</span><span className="red">]─[</span><span className="tilde">~</span><span class="red">]</span><br/>
+				<span className="red">└──╼</span> <span className="at">$</span> sudo namp -sU 192.168.0.34
 				<p>
-					<span className="red">┌─[✗</span>]─[<span className="user">user</span><span className="at">@</span><span className="hostname">parrot</span><span className="red">]─[</span><span className="tilde">~</span><span class="red">]</span>
-					<span className="red">└──╼</span> <span className="at">$</span> sudo namp -sU 192.168.0.34
-				</p>
-				<p>
-					20/tcp   closed ftp-data
-					21/tcp   open   ftp         vsftpd 2.0.8 or later
-					22/tcp   open   ssh         OpenSSH 7.2p2 Ubuntu 4 (Ubuntu Linux; protocol 2.0)
-					53/tcp   open   domain      dnsmasq 2.75
-					80/tcp   open   http        PHP cli server 5.5 or later
-					139/tcp  open   netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
-					666/tcp  open   doom?
-					3306/tcp open   mysql       MySQL 5.7.12-0ubuntu1
+					20/tcp   closed ftp-data<br/>
+					21/tcp   open   ftp         vsftpd 2.0.8 or later<br/>
+					22/tcp   open   ssh         OpenSSH 7.2p2 Ubuntu 4 (Ubuntu Linux; protocol 2.0)<br/>
+					53/tcp   open   domain      dnsmasq 2.75<br/>
+					80/tcp   open   http        PHP cli server 5.5 or later<br/>
+					139/tcp  open   netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)<br/>
+					666/tcp  open   doom?<br/>
+					3306/tcp open   mysql       MySQL 5.7.12-0ubuntu1<br/>
 				</p>
 			</div>
 		);

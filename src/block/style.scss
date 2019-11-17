@@ -4,7 +4,7 @@
  * CSS for both Frontend+Backend.
  */
 
-.wp-block-cgb-block-hacking-console-results  {
+.wp-block-mrjb-terminal-display  {
   background: $black;
   border: 0.2rem solid $black;
   color: $green;
@@ -18,7 +18,6 @@
   // word-break: break-all;
   // white-space: -moz-pre; /* Firefox 1.0-2.0 */
   // white-space: pre;
-}
 
   /* white-space: pre-line;*/
 
@@ -28,7 +27,7 @@
   box-shadow: 3px 3px 12px 0px rgba(230,230,230,1);
 }
 
-.wp-block-cgb-block-hacking-console-results {
+.wp-block-mrjb-terminal-display {
   span.at {
     color:$yellow;
   }

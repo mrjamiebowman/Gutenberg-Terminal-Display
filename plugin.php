@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Hacking Console Output (Gutenberg)
- * Plugin URI: https://github.com/mrjamiebowman/hacking-console-output
- * Description: Gutenberg plugin for displaying ParrotOS terminal
+ * Plugin Name: Gutenberg Terminal Display
+ * Plugin URI: https://github.com/mrjamiebowman/Gutenberg-Terminal-Display
+ * Description: Gutenberg Terminal Display plugin for displaying terminal output.
  * Author: mrjamiebowman
  * Author URI: https://www.mrjamiebowman.com
  * Version: 1.0.0
