@@ -11,12 +11,12 @@ import './style.scss';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { 
-	RichText, 
+const { 	
 	AlignmentToolbar, 
 	BlockControls,
 	BlockAlignmentToolbar,
 	InspectorControls, 
+	RichText, 
  } = wp.editor;
 const { 
 	Toolbar,
@@ -72,6 +72,10 @@ registerBlockType( 'mrjb/terminal-display', {
 			source: 'html',
 			selector: 'p',
 		},
+		showPluginLink: {
+			type: 'Boolean',
+			default: 1
+		}
 	},
 
 	/**
@@ -99,6 +103,10 @@ registerBlockType( 'mrjb/terminal-display', {
 			props.setAttributes( { command: value } );
 		}
 
+		function onChangeShowPluginLink (value) {
+			props.setAttributes( { showPluginLink: value } );
+		}
+
 		function onChangeTerminalData (value) {
 			props.setAttributes( { terminalData: value } );
 		}
@@ -120,7 +128,10 @@ registerBlockType( 'mrjb/terminal-display', {
 						</PanelRow>
 						<PanelRow>
 							<TextControl format="string" label="Command" value={ props.attributes.command } onChange={ onChangeCommand }></TextControl>
-						</PanelRow>						
+						</PanelRow>		
+						<PanelRow>
+							<ToggleControl label="Show Plugin Link" checked={ props.attributes.showPluginLink } onChange={ onChangeShowPluginLink } />
+						</PanelRow>				
 					</PanelBody>
 				</InspectorControls>				
 				<div className="terminal">
