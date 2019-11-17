@@ -61,18 +61,23 @@ registerBlockType( 'mrjb/terminal-display', {
 		// Creates a <p class='wp-block-mrjb-terminal-display'></p>.
 		return (
 			<div className={ props.className }>
-				<span className="red">┌─[✗</span>]─[<span className="user">user</span><span className="at">@</span><span className="hostname">parrot</span><span className="red">]─[</span><span className="tilde">~</span><span class="red">]</span><br/>
-				<span className="red">└──╼</span> <span className="at">$</span> sudo namp -sU 192.168.0.34
-				<p>
-					20/tcp   closed ftp-data<br/>
-					21/tcp   open   ftp         vsftpd 2.0.8 or later<br/>
-					22/tcp   open   ssh         OpenSSH 7.2p2 Ubuntu 4 (Ubuntu Linux; protocol 2.0)<br/>
-					53/tcp   open   domain      dnsmasq 2.75<br/>
-					80/tcp   open   http        PHP cli server 5.5 or later<br/>
-					139/tcp  open   netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)<br/>
-					666/tcp  open   doom?<br/>
-					3306/tcp open   mysql       MySQL 5.7.12-0ubuntu1<br/>
-				</p>
+				<div className="terminal">
+					<div className="command">
+						<span className="red">┌─[✗</span>]─[<span className="user">user</span><span className="at">@</span><span className="hostname">parrot</span><span className="red">]─[</span><span className="tilde">~</span><span class="red">]</span><br/>
+						<span className="red">└──╼</span> <span className="at">$</span> <a href="javascript:none" title="Click to copy">sudo namp -sU 192.168.0.34</a>
+					</div>
+					<p>
+						20/tcp   closed ftp-data<br/>
+						21/tcp   open   ftp         vsftpd 2.0.8 or later<br/>
+						22/tcp   open   ssh         OpenSSH 7.2p2 Ubuntu 4 (Ubuntu Linux; protocol 2.0)<br/>
+						53/tcp   open   domain      dnsmasq 2.75<br/>
+						80/tcp   open   http        PHP cli server 5.5 or later<br/>
+						139/tcp  open   netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)<br/>
+						666/tcp  open   doom?<br/>
+						3306/tcp open   mysql       MySQL 5.7.12-0ubuntu1<br/>
+					</p>
+				</div>
+				<div className="info-tag"><a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank">(Gutenberg Terminal Display)</a></div>
 			</div>
 		);
 	},
@@ -91,19 +96,24 @@ registerBlockType( 'mrjb/terminal-display', {
 	save: ( props ) => {
 		return (
 			<div className={ props.className }>
-				<span className="red">┌─[✗</span>]─[<span className="user">user</span><span className="at">@</span><span className="hostname">parrot</span><span className="red">]─[</span><span className="tilde">~</span><span class="red">]</span><br/>
-				<span className="red">└──╼</span> <span className="at">$</span> sudo namp -sU 192.168.0.34
-				<p>
-					20/tcp   closed ftp-data<br/>
-					21/tcp   open   ftp         vsftpd 2.0.8 or later<br/>
-					22/tcp   open   ssh         OpenSSH 7.2p2 Ubuntu 4 (Ubuntu Linux; protocol 2.0)<br/>
-					53/tcp   open   domain      dnsmasq 2.75<br/>
-					80/tcp   open   http        PHP cli server 5.5 or later<br/>
-					139/tcp  open   netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)<br/>
-					666/tcp  open   doom?<br/>
-					3306/tcp open   mysql       MySQL 5.7.12-0ubuntu1<br/>
-				</p>
-			</div>
+				<div className="terminal">
+					<div className="command">
+						<span className="red">┌─[✗</span>]─[<span className="user">user</span><span className="at">@</span><span className="hostname">parrot</span><span className="red">]─[</span><span className="tilde">~</span><span class="red">]</span><br/>
+						<span className="red">└──╼</span> <span className="at">$</span> <a href="javascript:none" title="Click to copy">sudo namp -sU 192.168.0.34</a>
+					</div>
+					<p>
+						20/tcp   closed ftp-data<br/>
+						21/tcp   open   ftp         vsftpd 2.0.8 or later<br/>
+						22/tcp   open   ssh         OpenSSH 7.2p2 Ubuntu 4 (Ubuntu Linux; protocol 2.0)<br/>
+						53/tcp   open   domain      dnsmasq 2.75<br/>
+						80/tcp   open   http        PHP cli server 5.5 or later<br/>
+						139/tcp  open   netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)<br/>
+						666/tcp  open   doom?<br/>
+						3306/tcp open   mysql       MySQL 5.7.12-0ubuntu1<br/>
+					</p>
+				</div>
+				<div className="info-tag"><a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank">(Gutenberg Terminal Display)</a></div>
+			</div>		
 		);
 	},
 } );

@@ -5,11 +5,23 @@
  * which makes it higher in priority.
  */
 
-.wp-block-mrjb-terminal-display  {
+ .wp-block-mrjb-terminal-display {
+  font-family: 'Roboto Mono', monospace;
+}
+
+.wp-block-mrjb-terminal-display .info-tag,
+.wp-block-mrjb-terminal-display .info-tag a {
+  display: $lightgrey;
+  font-size: .75rem;
+  padding: 2px 0;
+  text-align: center;
+}
+
+.wp-block-mrjb-terminal-display .terminal {
   background: $black;
   border: 0.2rem solid $black;
   color: $green;
-  font-family: 'Roboto Mono', monospace;  
+  font-family: 'Roboto Mono', monospace;
   line-height: normal;
   margin: 0 auto;
   max-width: 740px;
@@ -18,7 +30,18 @@
   /* line breaks */
   // word-break: break-all;
   // white-space: -moz-pre; /* Firefox 1.0-2.0 */
-  // white-space: pre-line;
+  // white-space: pre;
+
+  /* white-space: pre-line;*/
+
+  /* shadow */
+  -webkit-box-shadow: 3px 3px 12px 0px rgba(230,230,230,1);
+  -moz-box-shadow: 3px 3px 12px 0px rgba(230,230,230,1);
+  box-shadow: 3px 3px 12px 0px rgba(230,230,230,1);
+}
+
+.wp-block-mrjb-terminal-display .command {
+  margin-bottom: 15px;
 }
 
 .wp-block-mrjb-terminal-display {

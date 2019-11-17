@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function hacking_console_results_cgb_block_assets() { // phpcs:ignore
 	// Register block styles for both frontend + backend.	
 	wp_register_style(
-		'hacking_console_results-cgb-style-css', // Handle.
+		'terminal-display-block-style-css', // Handle.
 		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
 		array( 'wp-editor' ), // Dependency to include the CSS after it.
 		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
@@ -38,7 +38,7 @@ function hacking_console_results_cgb_block_assets() { // phpcs:ignore
 
 	// Register block editor script for backend.
 	wp_register_script(
-		'hacking_console_results-cgb-block-js', // Handle.
+		'terminal-display-block-editor-js', // Handle.
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
 		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
 		null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
@@ -47,7 +47,7 @@ function hacking_console_results_cgb_block_assets() { // phpcs:ignore
 
 	// Register block editor styles for backend.
 	wp_register_style(
-		'hacking_console_results-cgb-block-editor-css', // Handle.
+		'terminal-display-block-editor-css', // Handle.
 		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
 		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
 		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
@@ -55,7 +55,7 @@ function hacking_console_results_cgb_block_assets() { // phpcs:ignore
 
 	// WP Localized globals. Use dynamic PHP stuff in JavaScript via `cgbGlobal` object.
 	wp_localize_script(
-		'hacking_console_results-cgb-block-js',
+		'terminal-display-block-js',
 		'cgbGlobal', // Array containing dynamic data for a JS Global.
 		[
 			'pluginDirPath' => plugin_dir_path( __DIR__ ),
@@ -75,13 +75,13 @@ function hacking_console_results_cgb_block_assets() { // phpcs:ignore
 	 * @since 1.16.0
 	 */
 	register_block_type(
-		'cgb/block-hacking-console-results', array(
+		'mrjb/terminal-display', array(
 			// Enqueue blocks.style.build.css on both frontend & backend.
-			'style'         => 'hacking_console_results-cgb-style-css',
+			'style'         => 'terminal-display-block-style-css',
 			// Enqueue blocks.build.js in the editor only.
-			'editor_script' => 'hacking_console_results-cgb-block-js',
+			'editor_script' => 'terminal-display-block-editor-js',
 			// Enqueue blocks.editor.build.css in the editor only.
-			'editor_style'  => 'hacking_console_results-cgb-block-editor-css',
+			'editor_style'  => 'terminal-display-block-editor-css',
 		)
 	);
 }
