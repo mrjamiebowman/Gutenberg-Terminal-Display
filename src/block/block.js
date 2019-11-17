@@ -127,9 +127,13 @@ registerBlockType( 'mrjb/terminal-display', {
 			props.setAttributes( { user: value } );
 		}
 
-		const onClickCopyCommand = value => {
-			debugger;
-		};
+		function showPluginLink( value ) {
+			if (value === true) {
+				return { __html: '<a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank">(Gutenberg Terminal Display)</a>'};
+			}
+			
+			return { __html: '' };
+		}
 
 		return (
 			<div className={ props.className }>
@@ -175,7 +179,7 @@ registerBlockType( 'mrjb/terminal-display', {
 						tagName="p"
 					/>
 				</div>
-				<div className="info-tag" isActive={ props.attributes.showPluginLink }><a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank">(Gutenberg Terminal Display)</a></div>
+				<div dangerouslySetInnerHTML={ showPluginLink( props.attributes.showPluginLink ) } className="info-tag"></div>
 			</div>
 		);
 	},
@@ -197,6 +201,11 @@ registerBlockType( 'mrjb/terminal-display', {
 		var content = props.attributes.terminalData;
 		var showPlugin = props.attributes.showPluginLink;
 
+		var htmlShowPlugin = "";
+		if (showPlugin === 1) {
+			htmlShowPlugin = '<div className="info-tag" ><a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank" rel="noopener noreferrer">(Gutenberg Terminal Display)</a></div>';
+		}
+
 		return (		
 			<div>
 				<div className="terminal">
@@ -208,7 +217,7 @@ registerBlockType( 'mrjb/terminal-display', {
 						{ content }
 					</p>
 				</div>
-				<div className="info-tag"><a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank" rel="noopener noreferrer">(Gutenberg Terminal Display)</a></div>
+				{htmlShowPlugin}				
 			</div>		
 		);
 	},
