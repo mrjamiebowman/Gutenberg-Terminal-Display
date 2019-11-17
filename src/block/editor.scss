@@ -1,0 +1,40 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+.wp-block-cgb-block-hacking-console-results  {
+  background: $black;
+  border: 0.2rem solid $black;
+  color: $green;
+  font-family: 'Roboto Mono', monospace;  
+  line-height: normal;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 1.5rem;
+
+  /* line breaks */
+  // word-break: break-all;
+  // white-space: -moz-pre; /* Firefox 1.0-2.0 */
+  // white-space: pre-line;
+}
+
+.wp-block-cgb-block-hacking-console-results {
+  span.at {
+    color:$yellow;
+  }
+  span.hostname {
+    color:$teal;
+  }
+  span.red {
+    color:$red;
+  }
+  span.username {
+    color: $green;  
+  }
+  span.tilde {
+    color: $green-dark;  
+  }
+}
