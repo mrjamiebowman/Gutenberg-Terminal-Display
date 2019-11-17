@@ -56,6 +56,10 @@ registerBlockType( 'mrjb/terminal-display', {
 	],
 
 	attributes: {
+		terminalType: {
+			type: 'string',
+			default: 'Parrot Security OS'
+		},
 		command: {
 			type: 'string',
 			default: 'nmap -sV 127.0.0.1',
@@ -85,6 +89,10 @@ registerBlockType( 'mrjb/terminal-display', {
 		 * Update content on change.
 		 */
 
+		function onChangeTerminalType (value) {
+			props.setAttributes( { terminalType: value } );
+		}
+
 		function onChangeCommand (value) {
 			props.setAttributes( { command: value } );
 		}
@@ -98,11 +106,11 @@ registerBlockType( 'mrjb/terminal-display', {
 				<InspectorControls>
 					<PanelBody title="Terminal Settings" initialOpen="true">
 						<PanelRow>
-							<TextControl format="string" label="Command" value={ props.attributes.command } onChange={ onChangeCommand }></TextControl>
+							<TextControl format="string" label="Terminal" value={ props.attributes.terminalType } onChange={ onChangeTerminalType }></TextControl>
 						</PanelRow>
 						<PanelRow>
-
-						</PanelRow>
+							<TextControl format="string" label="Command" value={ props.attributes.command } onChange={ onChangeCommand }></TextControl>
+						</PanelRow>						
 					</PanelBody>
 				</InspectorControls>				
 				<div className="terminal">
@@ -113,7 +121,7 @@ registerBlockType( 'mrjb/terminal-display', {
 					<RichText
 						format="string"
 						formattingControls={ [] }
-						placeholder={ __( 'Terminal Output' ) }
+						placeholder={ __( 'Put terminal output here...' ) }
 						onChange={ onChangeTerminalData }
 						value={ props.attributes.terminalData }
 						formattingControls = { [ 'bold', 'align' ] }
