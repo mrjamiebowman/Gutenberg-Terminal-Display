@@ -91,8 +91,8 @@ add_action( 'init', 'mrjb_terminal_display_block_assets' );
 
 
 // parrot os like font "Monospace Regular"
-function hacking_console_add_google_fonts() {
+function mrjb_terminal_display_add_google_fonts() {
 	wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap', false ); 
 }
 	 
-add_action( 'wp_enqueue_scripts', 'hacking_console_add_google_fonts' );
+add_action( 'wp_enqueue_scripts', 'mrjb_terminal_display_add_google_fonts' );
