@@ -159,7 +159,7 @@ registerBlockType( 'mrjb/terminal-display', {
 				<div className="terminal">
 					<div className="command">
 						<span className="red">┌─[✗</span>]─[<span className="user">{ props.attributes.user }</span><span className="at">@</span><span className="hostname">{ props.attributes.hostname }</span><span className="red">]─[</span><span className="tilde">~</span><span className="red">]</span><br/>
-						<span className="red">└──╼</span> <span className="at">$</span> <a href="javascript:none" title="Click to copy">{ props.attributes.command }</a>
+						<span className="red">└──╼</span> <span className="at">$</span> <a href="javascript:none" title="Click to copy to clipboard">{ props.attributes.command }</a>
 					</div>
 					<RichText
 						format="string"
@@ -192,18 +192,22 @@ registerBlockType( 'mrjb/terminal-display', {
 		var command = props.attributes.command;
 		var content = props.attributes.terminalData;
 
+		function onClickCopyCommand (value) {
+			debugger;
+		}
+
 		return (		
-			<div className={ props.className }>
+			<div>
 				<div className="terminal">
 					<div className="command">
 						<span className="red">┌─[✗</span>]─[<span className="user">user</span><span className="at">@</span><span className="hostname">parrot</span><span className="red">]─[</span><span className="tilde">~</span><span className="red">]</span><br/>
-						<span className="red">└──╼</span> <span className="at">$</span> <a href="javascript:none" title="Click to copy">{ command }</a>
+						<span className="red">└──╼</span> <span className="at">$</span> <Button href="javascript:none" title="Click to copy to clipboard" isLink={ true } onClick={ onClickCopyCommand }>{ command }</Button>
 					</div>
 					<p>
 						{ content }
 					</p>
 				</div>
-				<div className="info-tag"><a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank">(Gutenberg Terminal Display)</a></div>
+				<div className="info-tag"><a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank" rel="noopener noreferrer">(Gutenberg Terminal Display)</a></div>
 			</div>		
 		);
 	},
