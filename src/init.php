@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @uses {wp-editor} for WP editor styles.
  * @since 1.0.0
  */
-function hacking_console_results_cgb_block_assets() { // phpcs:ignore
+function mrjb_terminal_display_block_assets() { // phpcs:ignore
 	// Register block styles for both frontend + backend.	
 	wp_register_style(
 		'terminal-display-block-style-css', // Handle.
@@ -87,7 +87,7 @@ function hacking_console_results_cgb_block_assets() { // phpcs:ignore
 }
 
 // Hook: Block assets.
-add_action( 'init', 'hacking_console_results_cgb_block_assets' );
+add_action( 'init', 'mrjb_terminal_display_block_assets' );
 
 
 // parrot os like font "Monospace Regular"
