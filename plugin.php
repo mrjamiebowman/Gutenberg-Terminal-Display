@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Gutenberg Terminal Display
+ * Plugin Name: Terminal Display (Gutenberg)
  * Plugin URI: https://github.com/mrjamiebowman/Gutenberg-Terminal-Display
  * Description: Gutenberg Terminal Display plugin for displaying terminal output.
  * Author: mrjamiebowman

@@ -11,7 +11,24 @@ import './style.scss';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const { RichText } = wp.editor;
+const { 
+	RichText, 
+	AlignmentToolbar, 
+	BlockControls,
+	BlockAlignmentToolbar,
+	InspectorControls, 
+ } = wp.editor;
+const { 
+	Toolbar,
+	Button,
+	Tooltip,
+	PanelBody,
+	PanelRow,
+	FormToggle,
+	Spinner,
+	TextControl
+} = wp.components;
+const { withSelect } = wp.data;
 
 /**
  * Register: aa Gutenberg Block.
@@ -40,8 +57,10 @@ registerBlockType( 'mrjb/terminal-display', {
 
 	attributes: {
 		command: {
-			source: 'text',
-			selector: '.terminal__comanmd',
+			type: 'string',
+			default: 'nmap -sV 127.0.0.1',
+			source: 'attribute',
+			selector: 'a',
 		},
 		terminalData: {
 			source: 'html',
@@ -66,17 +85,30 @@ registerBlockType( 'mrjb/terminal-display', {
 		 * Update content on change.
 		 */
 
+		function onChangeCommand (value) {
+			props.setAttributes( { command: value } );
+		}
+
 		function onChangeTerminalData (value) {
 			props.setAttributes( { terminalData: value } );
 		}
 
-		// Creates a <p class='wp-block-mrjb-terminal-display'></p>.
 		return (
 			<div className={ props.className }>
+				<InspectorControls>
+					<PanelBody title="Terminal Settings" initialOpen="true">
+						<PanelRow>
+							<TextControl format="string" label="Command" value={ props.attributes.command } onChange={ onChangeCommand }></TextControl>
+						</PanelRow>
+						<PanelRow>
+
+						</PanelRow>
+					</PanelBody>
+				</InspectorControls>				
 				<div className="terminal">
 					<div className="command">
 						<span className="red">┌─[✗</span>]─[<span className="user">user</span><span className="at">@</span><span className="hostname">parrot</span><span className="red">]─[</span><span className="tilde">~</span><span className="red">]</span><br/>
-						<span className="red">└──╼</span> <span className="at">$</span> <a href="javascript:none" title="Click to copy">sudo namp -sU 192.168.0.34</a>
+						<span className="red">└──╼</span> <span className="at">$</span> <a href="javascript:none" title="Click to copy">{ props.attributes.command }</a>
 					</div>
 					<RichText
 						format="string"
@@ -84,7 +116,7 @@ registerBlockType( 'mrjb/terminal-display', {
 						placeholder={ __( 'Terminal Output' ) }
 						onChange={ onChangeTerminalData }
 						value={ props.attributes.terminalData }
-						formattingControls = { [ 'bold' ] }
+						formattingControls = { [ 'bold', 'align' ] }
 						tagName="p"
 					/>
 				</div>
@@ -114,17 +146,10 @@ registerBlockType( 'mrjb/terminal-display', {
 				<div className="terminal">
 					<div className="command">
 						<span className="red">┌─[✗</span>]─[<span className="user">user</span><span className="at">@</span><span className="hostname">parrot</span><span className="red">]─[</span><span className="tilde">~</span><span className="red">]</span><br/>
-						<span className="red">└──╼</span> <span className="at">$</span> <a href="javascript:none" title="Click to copy">sudo namp -sU 192.168.0.34</a>
+						<span className="red">└──╼</span> <span className="at">$</span> <a href="javascript:none" title="Click to copy">{ command }</a>
 					</div>
 					<p>
-						20/tcp   closed ftp-data<br/>
-						21/tcp   open   ftp         vsftpd 2.0.8 or later<br/>
-						22/tcp   open   ssh         OpenSSH 7.2p2 Ubuntu 4 (Ubuntu Linux; protocol 2.0)<br/>
-						53/tcp   open   domain      dnsmasq 2.75<br/>
-						80/tcp   open   http        PHP cli server 5.5 or later<br/>
-						139/tcp  open   netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)<br/>
-						666/tcp  open   doom?<br/>
-						3306/tcp open   mysql       MySQL 5.7.12-0ubuntu1<br/>
+						{ content }
 					</p>
 				</div>
 				<div className="info-tag"><a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank">(Gutenberg Terminal Display)</a></div>
