@@ -39,6 +39,10 @@ registerBlockType( 'mrjb/terminal-display', {
 	],
 
 	attributes: {
+		command: {
+			source: 'text',
+			selector: '.terminal__comanmd',
+		},
 		terminalData: {
 			source: 'html',
 			selector: 'p',
@@ -80,6 +84,7 @@ registerBlockType( 'mrjb/terminal-display', {
 						placeholder={ __( 'Terminal Output' ) }
 						onChange={ onChangeTerminalData }
 						value={ props.attributes.terminalData }
+						formattingControls = { [ 'bold' ] }
 						tagName="p"
 					/>
 				</div>
@@ -101,7 +106,10 @@ registerBlockType( 'mrjb/terminal-display', {
 	 */
 	save: ( props ) => {
 
-		return (
+		var command = props.attributes.command;
+		var content = props.attributes.terminalData;
+
+		return (		
 			<div className={ props.className }>
 				<div className="terminal">
 					<div className="command">
