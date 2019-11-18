@@ -68,6 +68,10 @@ registerBlockType( 'mrjb/terminal-display', {
 			source: 'attribute',
 			selector: 'a',
 		},
+		path: {
+			type: 'string',
+			default: ''
+		},		
 		user: {
 			type: 'string',
 			default: 'user'
@@ -83,6 +87,18 @@ registerBlockType( 'mrjb/terminal-display', {
 		terminalData: {
 			source: 'html',
 			selector: 'p',
+		},
+		psPrompt: {
+			type: 'string',
+			default: 'PS C:\\Users\\user>'
+		},
+		kaliPrompt: {
+			type: 'string',
+			default: 'root@kali:~#'
+		},
+		baPrompt: {
+			type: 'string',
+			default: 'root@blackarch ~ #'
 		},
 	},
 
@@ -103,28 +119,48 @@ registerBlockType( 'mrjb/terminal-display', {
 		 * Update content on change.
 		 */
 
+		function onChangeTerminalData (value) {
+			props.setAttributes( { terminalData: value } );
+		}		
+
 		function onChangeCommand (value) {
 			props.setAttributes( { command: value } );
+		}
+
+		function onChangePath (value) {
+			props.setAttributes( { path: value } );
+		}
+
+		function onChangeShowPluginLink (value) {
+			props.setAttributes( { showPluginLink: value } );
+		}
+		
+		function onChangeTerminalType (value) {
+			props.setAttributes( { terminalType: value } );
+		}
+
+		/* parrot os */
+		function onChangeUser (value) {
+			props.setAttributes( { user: value } );
 		}
 
 		function onChangeHostname (value) {
 			props.setAttributes( { hostname: value } );
 		}
 
-		function onChangeShowPluginLink (value) {
-			props.setAttributes( { showPluginLink: value } );
+		/* ps */
+		function onChangePsPrompt (value) {
+			props.setAttributes( { psPrompt: value } );
 		}
 
-		function onChangeTerminalData (value) {
-			props.setAttributes( { terminalData: value } );
-		}		
-
-		function onChangeTerminalType (value) {
-			props.setAttributes( { terminalType: value } );
+		/* kali */
+		function onChangeKaliPrompt (value) {
+			props.setAttributes( { kaliPrompt: value } );
 		}
 
-		function onChangeUser (value) {
-			props.setAttributes( { user: value } );
+		/* blackarch */
+		function onChangeBaPrompt (value) {
+			props.setAttributes( { baPrompt: value } );
 		}
 
 		function showPluginLink( value ) {
@@ -154,7 +190,10 @@ registerBlockType( 'mrjb/terminal-display', {
 							</PanelRow>
 							<PanelRow>
 								<TextControl format="string" label="Command" value={ props.attributes.command } onChange={ onChangeCommand }></TextControl>
-							</PanelRow>							
+							</PanelRow>
+							<PanelRow>
+								<TextControl format="string" label="Path" value={ props.attributes.path } onChange={ onChangePath }></TextControl>
+							</PanelRow>
 							<PanelRow>
 								<ToggleControl label="Show Plugin Link" checked={ props.attributes.showPluginLink } onChange={ onChangeShowPluginLink } help={ props.attributes.showPluginLink ? 'Showing link to Terminal Display plugin.' : 'Not showing plugin link' } />
 							</PanelRow>				
@@ -170,11 +209,14 @@ registerBlockType( 'mrjb/terminal-display', {
 								<TextControl format="string" label="Hostname" value={ props.attributes.hostname } onChange={ onChangeHostname }></TextControl>
 							</PanelRow>
 						</PanelBody>
-						<PanelBody title={ __("PowerShell Settings")}>
-
+						<PanelBody title={ __("PowerShell Settings")}>						
+							<TextControl format="string" label="Command" value={ props.attributes.psPrompt } onChange={ onChangePsPrompt }></TextControl>
+						</PanelBody>
+						<PanelBody title={ __("Kali Settings")}>
+							<TextControl format="string" label="Command" value={ props.attributes.kaliPrompt } onChange={ onChangeKaliPrompt }></TextControl>
 						</PanelBody>
 						<PanelBody title={ __("BlackArch Settings")}>
-
+							<TextControl format="string" label="Command" value={ props.attributes.baPrompt } onChange={ onChangeBaPrompt }></TextControl>
 						</PanelBody>
 					</InspectorControls>				
 					<div className="terminal">
