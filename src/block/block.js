@@ -137,49 +137,63 @@ registerBlockType( 'mrjb/terminal-display', {
 
 		return (
 			<div className={ props.className }>
-				<InspectorControls>
-					<PanelBody title={ __("Terminal Settings") } initialOpen={ true }>
-						<PanelRow>
-							<SelectControl label="Terminal" value={ props.attributes.terminalType } onChange={ onChangeTerminalType }
-								options={
-									[
-										{ label: 'Command Prompt', value: 'cmd'},
-										{ label: 'Parrot Security OS', value: 'parrotos'},
-										{ label: 'PowerShell', value: 'ps'}
-									]
-								}
-							/>
-						</PanelRow>	
-						<PanelRow>
-							<TextControl format="string" label="User" value={ props.attributes.user } onChange={ onChangeUser }></TextControl>
-						</PanelRow>		
-						<PanelRow>
-							<TextControl format="string" label="Hostname" value={ props.attributes.hostname } onChange={ onChangeHostname }></TextControl>
-						</PanelRow>		
-						<PanelRow>
-							<TextControl format="string" label="Command" value={ props.attributes.command } onChange={ onChangeCommand }></TextControl>
-						</PanelRow>
-						<PanelRow>
-							<ToggleControl label="Show Plugin Link" checked={ props.attributes.showPluginLink } onChange={ onChangeShowPluginLink } help={ props.attributes.showPluginLink ? 'Showing link to Terminal Display plugin.' : 'Not showing plugin link' } />
-						</PanelRow>				
-					</PanelBody>
-				</InspectorControls>				
-				<div className="terminal">
-					<div className="command">
-						<span className="red">┌─[✗</span>]─[<span className="user">{ props.attributes.user }</span><span className="at">@</span><span className="hostname">{ props.attributes.hostname }</span><span className="red">]─[</span><span className="tilde">~</span><span className="red">]</span><br/>
-						<span className="red">└──╼</span> <span className="at">$</span> <a href="javascript:none" title="Click to copy to clipboard">{ props.attributes.command }</a>
+				<div className={ props.attributes.terminalType }>
+					<InspectorControls>
+						<PanelBody title={ __("Terminal Settings") } initialOpen={ true }>
+							<PanelRow>
+								<SelectControl label="Terminal" value={ props.attributes.terminalType } onChange={ onChangeTerminalType }
+									options={
+										[
+											{ label: 'Black Prompt', value: 'black'},
+											{ label: 'Parrot Security OS', value: 'parrotos'},
+											{ label: 'PowerShell', value: 'ps'},
+											{ label: 'BlackArch', value: 'blackarch'}
+										]
+									}
+								/>
+							</PanelRow>
+							<PanelRow>
+								<TextControl format="string" label="Command" value={ props.attributes.command } onChange={ onChangeCommand }></TextControl>
+							</PanelRow>							
+							<PanelRow>
+								<ToggleControl label="Show Plugin Link" checked={ props.attributes.showPluginLink } onChange={ onChangeShowPluginLink } help={ props.attributes.showPluginLink ? 'Showing link to Terminal Display plugin.' : 'Not showing plugin link' } />
+							</PanelRow>				
+						</PanelBody>
+						<PanelBody title={ __("Black Prompt Settings")}>
+
+						</PanelBody>						
+						<PanelBody title={ __("Parrot OS Settings")}>
+							<PanelRow>
+								<TextControl format="string" label="User" value={ props.attributes.user } onChange={ onChangeUser }></TextControl>
+							</PanelRow>		
+							<PanelRow>
+								<TextControl format="string" label="Hostname" value={ props.attributes.hostname } onChange={ onChangeHostname }></TextControl>
+							</PanelRow>
+						</PanelBody>
+						<PanelBody title={ __("PowerShell Settings")}>
+
+						</PanelBody>
+						<PanelBody title={ __("BlackArch Settings")}>
+
+						</PanelBody>
+					</InspectorControls>				
+					<div className="terminal">
+						<div className="command">
+							<span className="red">┌─[✗</span>]─[<span className="user">{ props.attributes.user }</span><span className="at">@</span><span className="hostname">{ props.attributes.hostname }</span><span className="red">]─[</span><span className="tilde">~</span><span className="red">]</span><br/>
+							<span className="red">└──╼</span> <span className="at">$</span> <a href="javascript:none" title="Click to copy to clipboard">{ props.attributes.command }</a>
+						</div>
+						<RichText
+							format="string"
+							formattingControls={ [] }
+							placeholder={ __( 'Put terminal output here...' ) }
+							onChange={ onChangeTerminalData }
+							value={ props.attributes.terminalData }
+							formattingControls = { [ 'bold', 'align' ] }
+							tagName="p"
+						/>
 					</div>
-					<RichText
-						format="string"
-						formattingControls={ [] }
-						placeholder={ __( 'Put terminal output here...' ) }
-						onChange={ onChangeTerminalData }
-						value={ props.attributes.terminalData }
-						formattingControls = { [ 'bold', 'align' ] }
-						tagName="p"
-					/>
+					<div dangerouslySetInnerHTML={ showPluginLink( props.attributes.showPluginLink ) } className="info-tag"></div>
 				</div>
-				<div dangerouslySetInnerHTML={ showPluginLink( props.attributes.showPluginLink ) } className="info-tag"></div>
 			</div>
 		);
 	},
@@ -197,6 +211,7 @@ registerBlockType( 'mrjb/terminal-display', {
 	 */
 	save: ( props, onClickCopyCommand ) => {
 
+		var terminal = props.attributes.terminalType; 
 		var command = props.attributes.command;
 		var content = props.attributes.terminalData;
 		var showPlugin = props.attributes.showPluginLink;
@@ -205,19 +220,21 @@ registerBlockType( 'mrjb/terminal-display', {
 		if (showPlugin === true) {
 			htmlPluginLink = { __html: '<a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank" rel="noopener noreferrer">(Gutenberg Terminal Display)</a>'};
 		}
-		
-		return (		
+
+		return (
 			<div>
-				<div className="terminal">
-					<div className="command">
-						<span className="red">┌─[✗</span>]─[<span className="user">{ props.attributes.user }</span><span className="at">@</span><span className="hostname">{ props.attributes.hostname }</span><span className="red">]─[</span><span className="tilde">~</span><span className="red">]</span><br/>
-						<span className="red">└──╼</span> <span className="at">$</span> <a id="mrjb-btn-command" href="javascript:none" title="Click to copy to clipboard" onClick="mrjb_terminal_display_copy_to_clipboard(this)">{ command }</a>
+				<div className={ terminal }>
+					<div className="terminal">
+						<div className="command">
+							<span className="red">┌─[✗</span>]─[<span className="user">{ props.attributes.user }</span><span className="at">@</span><span className="hostname">{ props.attributes.hostname }</span><span className="red">]─[</span><span className="tilde">~</span><span className="red">]</span><br/>
+							<span className="red">└──╼</span> <span className="at">$</span> <a id="mrjb-btn-command" href="javascript:none" title="Click to copy to clipboard" onClick="mrjb_terminal_display_copy_to_clipboard(this)">{ command }</a>
+						</div>
+						<p>
+							{ content }
+						</p>
 					</div>
-					<p>
-						{ content }
-					</p>
-				</div>
-				<div className="info-tag" dangerouslySetInnerHTML={ htmlPluginLink }></div>
+					<div className="info-tag" dangerouslySetInnerHTML={ htmlPluginLink }></div>
+				</div>		
 			</div>		
 		);
 	},

@@ -4,10 +4,7 @@
  * CSS for both Frontend+Backend.
  */
 
-.wp-block-mrjb-terminal-display {
-  font-family: 'Roboto Mono', monospace;
-}
-
+ 
 .wp-block-mrjb-terminal-display .info-tag,
 .wp-block-mrjb-terminal-display .info-tag a {
   display: $lightgrey;
@@ -16,21 +13,12 @@
   text-align: center;
 }
 
-.wp-block-mrjb-terminal-display .terminal {
-  background: $black;
-  border: 0.2rem solid $black;
-  color: $green;
+
+.wp-block-mrjb-terminal-display .terminal {    
   line-height: normal;
   margin: 0 auto;
   max-width: 740px;
   padding: 1.25rem;
-
-  /* line breaks */
-  // word-break: break-all;
-  // white-space: -moz-pre; /* Firefox 1.0-2.0 */
-  // white-space: pre;
-
-  /* white-space: pre-line;*/
 
   /* shadow */
   -webkit-box-shadow: 3px 3px 12px 0px rgba(230,230,230,1);
@@ -42,17 +30,19 @@
   margin-bottom: 15px;
 }
 
-.wp-block-mrjb-terminal-display a.copy {
-  text-decoration: none;
-  color: $green;
-}
 
-.wp-block-mrjb-terminal-display .command a {
-  text-decoration: none;
-  color: $green;
-}
+.wp-block-mrjb-terminal-display .parrotos {
+  .terminal {
+    background: $black;
+    border: 0.2rem solid $black;    
+    color: $green;
+    font-family: 'Roboto Mono', monospace;
+  }
 
-.wp-block-mrjb-terminal-display {
+  .terminal a {
+    color: $green;
+  }
+
   span.at {
     color:$yellow;
   }
@@ -67,5 +57,18 @@
   }
   span.tilde {
     color: $green-dark;  
+  }
+}
+
+.wp-block-mrjb-terminal-display .ps {
+  .terminal {
+    background: $ps_blue;
+    border: 0.2rem solid $ps_blue;    
+    color: $ps_white;
+    font-family: 'Roboto Mono', monospace;
+
+    .terminal a {
+      color: $ps_white;
+    }    
   }
 }
