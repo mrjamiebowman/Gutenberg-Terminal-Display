@@ -4,6 +4,7 @@
  * CSS for just Backend enqueued after style.scss
  * which makes it higher in priority.
  */
+ 
  .wp-block-mrjb-terminal-display .info-tag,
  .wp-block-mrjb-terminal-display .info-tag a {
    display: $lightgrey;
@@ -64,11 +65,37 @@
      background: $ps_blue;
      border: 0.2rem solid $ps_blue;    
      color: $ps_white;
-     font-family: 'Roboto Mono', monospace;
+     font-family: 'Inconsolata', monospace;
  
      .terminal a {
        color: $ps_white;
      }    
    }
  }
+
+ .wp-block-mrjb-terminal-display .kali {
+  .terminal {
+    background: $kaliblack;
+    border: 0.2rem solid $kaliblack;    
+    color: $kalired;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .terminal a {
+    color: $kalired;
+  }
+} 
+
+ .wp-block-mrjb-terminal-display .blackarch {
+  .terminal {
+    background: $blackarch_black;
+    border: 0.2rem solid $blackarch_black;    
+    color: $blackarch_red;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .terminal a {
+    color: $blackarch_red;
+  }
+} 
  

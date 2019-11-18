@@ -106,7 +106,8 @@ function mrjb_terminal_display_block_resources_fontend() {
     );
 
 	// parrot os like font "Monospace Regular"
-	wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap', false ); 
+	wp_enqueue_style( 'wpb-google-fonts-parrotos', 'https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap', false ); 
+	wp_enqueue_style( 'wpb-google-fonts-powershell', 'https://fonts.googleapis.com/css?family=Inconsolata&display=swap', false ); 
 }
 	 
 add_action( 'enqueue_block_assets', 'mrjb_terminal_display_block_resources_fontend' );

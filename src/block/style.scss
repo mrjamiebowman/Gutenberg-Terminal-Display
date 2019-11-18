@@ -4,71 +4,97 @@
  * CSS for both Frontend+Backend.
  */
 
+ .wp-block-mrjb-terminal-display .info-tag,
+ .wp-block-mrjb-terminal-display .info-tag a {
+   display: $lightgrey;
+   font-size: .75rem;
+   padding: 2px 0;
+   text-align: center;
+ }
  
-.wp-block-mrjb-terminal-display .info-tag,
-.wp-block-mrjb-terminal-display .info-tag a {
-  display: $lightgrey;
-  font-size: .75rem;
-  padding: 2px 0;
-  text-align: center;
-}
+ 
+ .wp-block-mrjb-terminal-display .terminal {    
+   line-height: normal;
+   margin: 0 auto;
+   max-width: 740px;
+   padding: 1.25rem;
+ 
+   /* shadow */
+   -webkit-box-shadow: 3px 3px 12px 0px rgba(230,230,230,1);
+   -moz-box-shadow: 3px 3px 12px 0px rgba(230,230,230,1);
+   box-shadow: 3px 3px 12px 0px rgba(230,230,230,1);
+ }
+ 
+ .wp-block-mrjb-terminal-display .command {
+   margin-bottom: 15px;
+ }
+ 
+ 
+ .wp-block-mrjb-terminal-display .parrotos {
+   .terminal {
+     background: $black;
+     border: 0.2rem solid $black;    
+     color: $green;
+     font-family: 'Roboto Mono', monospace;
+   }
+ 
+   .terminal a {
+     color: $green;
+   }
+ 
+   span.at {
+     color:$yellow;
+   }
+   span.hostname {
+     color:$teal;
+   }
+   span.red {
+     color:$red;
+   }
+   span.username {
+     color: $green;  
+   }
+   span.tilde {
+     color: $green-dark;  
+   }
+ }
+ 
+ .wp-block-mrjb-terminal-display .ps {
+   .terminal {
+     background: $ps_blue;
+     border: 0.2rem solid $ps_blue;    
+     color: $ps_white;
+     font-family: 'Inconsolata', monospace;
+ 
+     .terminal a {
+       color: $ps_white;
+     }    
+   }
+ }
 
-
-.wp-block-mrjb-terminal-display .terminal {    
-  line-height: normal;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 1.25rem;
-
-  /* shadow */
-  -webkit-box-shadow: 3px 3px 12px 0px rgba(230,230,230,1);
-  -moz-box-shadow: 3px 3px 12px 0px rgba(230,230,230,1);
-  box-shadow: 3px 3px 12px 0px rgba(230,230,230,1);
-}
-
-.wp-block-mrjb-terminal-display .command {
-  margin-bottom: 15px;
-}
-
-
-.wp-block-mrjb-terminal-display .parrotos {
+ .wp-block-mrjb-terminal-display .kali {
   .terminal {
-    background: $black;
-    border: 0.2rem solid $black;    
-    color: $green;
+    background: $kaliblack;
+    border: 0.2rem solid $kaliblack;    
+    color: $kalired;
     font-family: 'Roboto Mono', monospace;
   }
 
   .terminal a {
-    color: $green;
+    color: $kalired;
   }
+} 
 
-  span.at {
-    color:$yellow;
-  }
-  span.hostname {
-    color:$teal;
-  }
-  span.red {
-    color:$red;
-  }
-  span.username {
-    color: $green;  
-  }
-  span.tilde {
-    color: $green-dark;  
-  }
-}
-
-.wp-block-mrjb-terminal-display .ps {
+ .wp-block-mrjb-terminal-display .blackarch {
   .terminal {
-    background: $ps_blue;
-    border: 0.2rem solid $ps_blue;    
-    color: $ps_white;
+    background: $blackarch_black;
+    border: 0.2rem solid $blackarch_black;    
+    color: $blackarch_red;
     font-family: 'Roboto Mono', monospace;
-
-    .terminal a {
-      color: $ps_white;
-    }    
   }
-}
+
+  .terminal a {
+    color: $blackarch_red;
+  }
+} 
+ 

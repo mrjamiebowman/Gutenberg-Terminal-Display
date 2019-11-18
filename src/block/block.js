@@ -32,6 +32,15 @@ const {
 } = wp.components;
 const { withSelect } = wp.data;
 
+
+function getPrompt( prompt ) {
+	if (value === 'parrotos') {
+		
+	}
+
+	return "";
+}
+
 /**
  * Register: aa Gutenberg Block.
  *
@@ -88,6 +97,10 @@ registerBlockType( 'mrjb/terminal-display', {
 			source: 'html',
 			selector: 'p',
 		},
+		standardPrompt: {
+			type: 'string',
+			default: 'C:\\Users\\user>'
+		},
 		psPrompt: {
 			type: 'string',
 			default: 'PS C:\\Users\\user>'
@@ -96,7 +109,7 @@ registerBlockType( 'mrjb/terminal-display', {
 			type: 'string',
 			default: 'root@kali:~#'
 		},
-		baPrompt: {
+		blackarchPrompt: {
 			type: 'string',
 			default: 'root@blackarch ~ #'
 		},
@@ -139,6 +152,11 @@ registerBlockType( 'mrjb/terminal-display', {
 			props.setAttributes( { terminalType: value } );
 		}
 
+		/* standard prompt */
+		function onChangeStandardPrompt (value) {
+			props.setAttributes( { standardPrompt: value } );
+		}
+
 		/* parrot os */
 		function onChangeUser (value) {
 			props.setAttributes( { user: value } );
@@ -159,8 +177,8 @@ registerBlockType( 'mrjb/terminal-display', {
 		}
 
 		/* blackarch */
-		function onChangeBaPrompt (value) {
-			props.setAttributes( { baPrompt: value } );
+		function onChangeBlackArchPrompt (value) {
+			props.setAttributes( { blackarchPrompt: value } );
 		}
 
 		function showPluginLink( value ) {
@@ -168,6 +186,22 @@ registerBlockType( 'mrjb/terminal-display', {
 				return { __html: '<a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank">(Gutenberg Terminal Display)</a>'};
 			}
 			
+			return { __html: '' };
+		}
+
+		function getPrompt( value ) {
+			if (value === 'standard') {
+
+			} else if (value === 'parrotos') {
+				return { __html: '<span class="red">┌─[✗</span>]─[<span class="user"' + props.attributes.user + '</span><span class="at">@</span><span class="hostname">' + props.attributes.hostname + '</span><span class="red">]─[</span><span class="tilde">~</span><span class="red">]</span><br/><span class="red">└──╼</span> <span class="at">$</span> <a href="javascript:none" title="Click to copy to clipboard">' + props.attributes.command + '</a>' };
+			} else if (value === 'ps') {
+				return { __html: props.attributes.psPrompt + ' <a href="javascript:none" title="Click to copy to clipboard">' + props.attributes.command + '</a>' };				
+			} else if (value === 'kali') {
+				return { __html: props.attributes.kaliPrompt + ' <a href="javascript:none" title="Click to copy to clipboard">' + props.attributes.command + '</a>' };				
+			} else if (value === 'blackarch') {
+				return { __html: props.attributes.blackarchPrompt + ' <a href="javascript:none" title="Click to copy to clipboard">' + props.attributes.command + '</a>' };				
+			}			
+	
 			return { __html: '' };
 		}
 
@@ -180,9 +214,10 @@ registerBlockType( 'mrjb/terminal-display', {
 								<SelectControl label="Terminal" value={ props.attributes.terminalType } onChange={ onChangeTerminalType }
 									options={
 										[
-											{ label: 'Black Prompt', value: 'black'},
-											{ label: 'Parrot Security OS', value: 'parrotos'},
+											{ label: 'Standard Prompt', value: 'standard'},
 											{ label: 'PowerShell', value: 'ps'},
+											{ label: 'Parrot Security OS', value: 'parrotos'},											
+											{ label: 'Kali', value: 'kali'},
 											{ label: 'BlackArch', value: 'blackarch'}
 										]
 									}
@@ -198,8 +233,8 @@ registerBlockType( 'mrjb/terminal-display', {
 								<ToggleControl label="Show Plugin Link" checked={ props.attributes.showPluginLink } onChange={ onChangeShowPluginLink } help={ props.attributes.showPluginLink ? 'Showing link to Terminal Display plugin.' : 'Not showing plugin link' } />
 							</PanelRow>				
 						</PanelBody>
-						<PanelBody title={ __("Black Prompt Settings")}>
-
+						<PanelBody title={ __("Standard Prompt Settings")}>
+							<TextControl format="string" label="Command" value={ props.attributes.standardPrompt } onChange={ onChangeStandardPrompt }></TextControl>
 						</PanelBody>						
 						<PanelBody title={ __("Parrot OS Settings")}>
 							<PanelRow>
@@ -216,14 +251,11 @@ registerBlockType( 'mrjb/terminal-display', {
 							<TextControl format="string" label="Command" value={ props.attributes.kaliPrompt } onChange={ onChangeKaliPrompt }></TextControl>
 						</PanelBody>
 						<PanelBody title={ __("BlackArch Settings")}>
-							<TextControl format="string" label="Command" value={ props.attributes.baPrompt } onChange={ onChangeBaPrompt }></TextControl>
+							<TextControl format="string" label="Command" value={ props.attributes.blackarchPrompt } onChange={ onChangeBlackArchPrompt }></TextControl>
 						</PanelBody>
 					</InspectorControls>				
 					<div className="terminal">
-						<div className="command">
-							<span className="red">┌─[✗</span>]─[<span className="user">{ props.attributes.user }</span><span className="at">@</span><span className="hostname">{ props.attributes.hostname }</span><span className="red">]─[</span><span className="tilde">~</span><span className="red">]</span><br/>
-							<span className="red">└──╼</span> <span className="at">$</span> <a href="javascript:none" title="Click to copy to clipboard">{ props.attributes.command }</a>
-						</div>
+						<div className="command" dangerouslySetInnerHTML={ getPrompt(props.attributes.terminalType) }></div>
 						<RichText
 							format="string"
 							formattingControls={ [] }
@@ -263,14 +295,27 @@ registerBlockType( 'mrjb/terminal-display', {
 			htmlPluginLink = { __html: '<a href="https://github.com/mrjamiebowman/Gutenberg-Terminal-Display" target="_blank" rel="noopener noreferrer">(Gutenberg Terminal Display)</a>'};
 		}
 
+		function getPrompt( value ) {
+			if (value === 'standard') {
+
+			} else if (value === 'parrotos') {
+				return { __html: '<span class="red">┌─[✗</span>]─[<span class="user"' + props.attributes.user + '</span><span class="at">@</span><span class="hostname">' + props.attributes.hostname + '</span><span class="red">]─[</span><span class="tilde">~</span><span class="red">]</span><br/><span class="red">└──╼</span> <span class="at">$</span> <a href="javascript:none" title="Click to copy to clipboard">' + props.attributes.command + '</a>' };
+			} else if (value === 'ps') {
+				return { __html: props.attributes.psPrompt + ' <a href="javascript:none" title="Click to copy to clipboard">' + props.attributes.command + '</a>' };				
+			} else if (value === 'kali') {
+				return { __html: props.attributes.kaliPrompt + ' <a href="javascript:none" title="Click to copy to clipboard">' + props.attributes.command + '</a>' };				
+			} else if (value === 'blackarch') {
+				return { __html: props.attributes.blackarchPrompt + ' <a href="javascript:none" title="Click to copy to clipboard">' + props.attributes.command + '</a>' };				
+			}			
+	
+			return { __html: '' };
+		}		
+
 		return (
 			<div>
 				<div className={ terminal }>
 					<div className="terminal">
-						<div className="command">
-							<span className="red">┌─[✗</span>]─[<span className="user">{ props.attributes.user }</span><span className="at">@</span><span className="hostname">{ props.attributes.hostname }</span><span className="red">]─[</span><span className="tilde">~</span><span className="red">]</span><br/>
-							<span className="red">└──╼</span> <span className="at">$</span> <a id="mrjb-btn-command" href="javascript:none" title="Click to copy to clipboard" onClick="mrjb_terminal_display_copy_to_clipboard(this)">{ command }</a>
-						</div>
+						<div className="command" dangerouslySetInnerHTML={ getPrompt(terminal) }></div>
 						<p>
 							{ content }
 						</p>
