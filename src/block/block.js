@@ -193,7 +193,7 @@ registerBlockType( 'mrjb/terminal-display', {
 			if (value === 'standard') {
 
 			} else if (value === 'parrotos') {
-				return { __html: '<span class="red">┌─[✗</span>]─[<span class="user"' + props.attributes.user + '</span><span class="at">@</span><span class="hostname">' + props.attributes.hostname + '</span><span class="red">]─[</span><span class="tilde">~</span><span class="red">]</span><br/><span class="red">└──╼</span> <span class="at">$</span> <a href="javascript:none" title="Click to copy to clipboard">' + props.attributes.command + '</a>' };
+				return { __html: '<span class="red">┌─[✗</span>]─[<span class="user">' + props.attributes.user + '</span><span class="at">@</span><span class="hostname">' + props.attributes.hostname + '</span><span class="red">]─[</span><span class="tilde">~</span><span class="red">]</span><br/><span class="red">└──╼</span> <span class="at">$</span> <a href="javascript:none" title="Click to copy to clipboard">' + props.attributes.command + '</a>' };
 			} else if (value === 'ps') {
 				return { __html: props.attributes.psPrompt + ' <a href="javascript:none" title="Click to copy to clipboard">' + props.attributes.command + '</a>' };				
 			} else if (value === 'kali') {
@@ -201,7 +201,7 @@ registerBlockType( 'mrjb/terminal-display', {
 			} else if (value === 'blackarch') {
 				return { __html: props.attributes.blackarchPrompt + ' <a href="javascript:none" title="Click to copy to clipboard">' + props.attributes.command + '</a>' };				
 			}			
-	
+	 
 			return { __html: '' };
 		}
 
@@ -299,7 +299,7 @@ registerBlockType( 'mrjb/terminal-display', {
 			if (value === 'standard') {
 
 			} else if (value === 'parrotos') {
-				return { __html: '<span class="red">┌─[✗</span>]─[<span class="user"' + props.attributes.user + '</span><span class="at">@</span><span class="hostname">' + props.attributes.hostname + '</span><span class="red">]─[</span><span class="tilde">~</span><span class="red">]</span><br/><span class="red">└──╼</span> <span class="at">$</span> <a href="javascript:none" title="Click to copy to clipboard">' + props.attributes.command + '</a>' };
+				return { __html: '<span class="red">┌─[✗</span>]─[<span class="user">' + props.attributes.user + '</span><span class="at">@</span><span class="hostname">' + props.attributes.hostname + '</span><span class="red">]─[</span><span class="tilde">~</span><span class="red">]</span><br/><span class="red">└──╼</span> <span class="at">$</span> <a href="javascript:none" title="Click to copy to clipboard" onClick="mrjb_terminal_display_copy_to_clipboard(this)">' + props.attributes.command + '</a>' };
 			} else if (value === 'ps') {
 				return { __html: props.attributes.psPrompt + ' <a href="javascript:none" title="Click to copy to clipboard">' + props.attributes.command + '</a>' };				
 			} else if (value === 'kali') {
